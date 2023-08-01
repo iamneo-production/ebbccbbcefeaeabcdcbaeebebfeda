@@ -1,0 +1,97 @@
+<div id="headerContainer" class="head">
+  <h1>Calory Tracker</h1>
+</div>
+<div class="search">
+  
+  <input type="text" id="searchBox" #c>
+  <button type="button" (click)="search(c.value)"><h3>Search</h3></button>
+</div>
+
+<div class="row">
+  <div id="newFood" class="new">
+      <button type="button" (click)="showform()"><h3>Add New Food</h3></button>
+  </div>
+  <div class="totalDis">
+      <button type="button" (click)="showtotal()" (click)="getTotal()"><h3>Show Total Calories</h3></button>
+  </div>
+</div>
+
+
+<div id="displayContainer"></div>
+
+
+<div class="cont">
+  <div [hidden]="bool1">
+    <div class="showtotal">
+      <h3>The Total Caloires </h3>
+    <h1>{{cal}}</h1>
+    <div *ngFor="let i of food">
+      <h3>{{i[0]}} {{i[1]}} {{i[3]}}</h3>
+      
+    </div>
+    </div>
+  </div>
+
+  <div class="showform" [hidden]="bool">
+    <form action="">
+    
+        <label for="">Name : </label>
+        <input #c1 type="text" id="name" placeholder="Enter Name" required>
+        
+        <h1></h1>
+        <label for="">Calories : </label>
+        <input #c2 type="number" id="calories" placeholder="Enter Calories" required>
+        
+        <h1></h1>
+        <label for="">Image : </label>
+        <input #c3 type="url" id="image" placeholder="Upload Image URL" required>
+        
+        <h1></h1>
+        <button type="button" (click)="addCal(c1.value,c2.value,c3.value)" (click)="showform()" (click)="getTotal()">ADD FOOD</button>
+        <h1></h1>
+    </form>
+  </div>
+</div>
+
+<div style="border-style: solid; width: 850px; display: flex ; flex-direction: column; border-radius: 20px; margin: 10px 60% 24px 17%;">
+
+  
+  <div *ngFor="let i of food" class="showfoods" [hidden]="outbox">
+
+    <h1>{{i[0]}}</h1>
+    
+    <div class="imgAdd">
+      <img src="{{i[2]}}" alt="Hi">
+      
+      <input #c1 type="text" hidden="true" value="{{i[0]}}">
+      <input class="inp" #c2 type="number">
+      <button  (click)="incItm(c1.value,c2.value)"  (click)="getTotal()">Add Items</button>
+    </div>
+    <h3>Calories {{i[1]}}</h3>
+
+  </div>
+</div>
+
+<div style="border-style: solid; width: 850px; display: flex ; flex-direction: column; border-radius: 20px; margin: 10px 60% 24px 17%;">
+
+  
+  <div class="searchShow" [hidden]="inbox">
+    <h1>Search Results</h1>
+    <button class="ok" type="button" (click)="searchof()"><h2>OK</h2></button><h1></h1>
+    <div *ngFor="let i of searchfood" class="showfoods" [hidden]="in">
+  
+      <h1>{{i[0]}}</h1>
+      
+      <div class="imgAdd">
+        <img src="{{i[2]}}" alt="Hi">
+        
+        <input #c1 type="text" hidden="true" value="{{i[0]}}">
+        <input class="inp" #c2 type="number">
+        <button  (click)="incItm(c1.value,c2.value)"  (click)="getTotal()">Add Items</button>
+      </div>
+      <h3>Calories {{i[1]}}</h3>
+  
+    </div>
+  </div>
+  
+</div>
